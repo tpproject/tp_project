@@ -10,106 +10,7 @@
 		canvas {border: 1px dotted black;}
 
 	</style>
-
-	<script>
-
-		var canvas;
-		var ctx;
-		var width; 					//shirochina na canvas
-		var height; 				//visochina na canvas
-		var bgColor = "black";		//background na canvas
-		var ballRadius = 10; 		//r na topcheto
-		var x = 20; 				//x poziciq na topcheto
-		var y = 250; 				//y poziciq na topcheto
-		var ballColor = "red";	//cvqt na topcheto
-		var dx = 1.5;				//stoinostta, s koqto se promenq mestopolojenieto na topcheto po x koordinatata
-		var dy = -4;				//stoinostta, s koqto se promenq mestopolojenieto na topcheto po y koordinatata
-		var padX; 					//X poziciq na duskata
-		var padWidth;				//shirochina na duskata
-		var padHeight;				//visochina na duskata
-		var padColor = "red";		//cvqt na duskata
-		var rightDown = false;
-		var leftDown = false;
-
-		
-		function init(){
-			canvas = document.getElementById('my_canvas');
-			ctx = canvas.getContext("2d");
-			width = canvas.width;
-			height = canvas.height;
-			padWidth = width/4.5;
-			padHeight = height/40;
-			padX = (width/2) - (padWidth/2);
-			gameInterval = setInterval(draw, 10);
-		}
-
-		function draw(){
-			ctx.fillStyle = bgColor;
-			clear();
-			ctx.fillStyle = ballColor;
-			circle(x, y, ballRadius);
-
-			if (rightDown) padX += 5;
-			else if (leftDown) padX -= 5;
-			
-			ctx.fillStyle = padColor;
-			rect(padX, height-padHeight, padWidth, padHeight);
-			
-			if (x + dx + ballRadius > width || x + dx - ballRadius < 0)
-				dx = -dx;
-
-			if (y + dy - ballRadius < 0)
-				dy = -dy;
-
-			else if (y + dy + ballRadius > height - padHeight) {
-
-				if (x > padX && x < padX + padWidth) {
-					dx = 8 * ((x-(padX+padWidth/2))/padWidth);
-					dy = -dy;
-				}
-
-				else if (y + dy + ballRadius > height)
-					clearInterval(gameInterval);
-
-			}
-
-			x += dx;
-			y += dy;
-
-		}
-
-		function clear(){ 
-			ctx.clearRect(0, 0, width, height);
-			rect(0, 0, width, height);
-		}
-
-		function rect(x, y, width, height){
-			ctx.beginPath();
-			ctx.fillRect(x, y, width, height);
-			ctx.closePath();
-		}
-
-		function circle(x,y,r){
-			ctx.beginPath();
-			ctx.arc(x, y, r, 0, Math.PI*2, true);
-			ctx.closePath();
-			ctx.fill();
-		}
-
-		function onKeyDown(evt){
-			if (evt.keyCode == 39) rightDown = true;
-			else if (evt.keyCode == 37) leftDown = true;
-		}
-
-		function onKeyUp(evt){
-			if (evt.keyCode == 39) rightDown = false;
-			else if (evt.keyCode == 37) leftDown = false;
-		}
-
-		document.addEventListener('keydown',onKeyDown);
-		document.addEventListener('keyup',onKeyUp);
-	
-	</script>
+	<script src="js/game.js"></script>
 
 </head>  
 <body>  
@@ -125,45 +26,35 @@
             <li><a href="luck.html">Късметчета</a></li>  
         </ul>     
     </nav>  
-    <section id="intro">  
+     <section id="intro">  
     <p>hello</p>
     </section>
     <div id="content">
-        <div id="mainContent">  
-	    	
-	<table cellspacing="5" border="0" cellpadding="0">
-	<tr valign="top" align="left">
-	<td width="1000">
-
-	<h3>
-	
-	<canvas id="my_canvas" width="400" height="400"></canvas>
-	<br />
-	<button onclick="init()">Стартирай играта!</button>
-	<p>Управление на дъската: Използвайте лявата и дясната стрелка.	
-
-	</h3>	
-	
-	</td>
-	<td width="2" bgcolor="black"><br></td>
-	<td width="150" valign="top" align="right">
-		
-	<header>
-                <h3>Класация 1</h3>
-        </header>
-        
-		<ul>
+       
+    <section>
+		<h3>
+            <canvas id="my_canvas" width="400" height="400"></canvas>
+			<br />
+			<button onclick="init()">Стартирай играта!</button>
+			<p>Управление на дъската: Използвайте лявата и дясната стрелка</p>
+    </section> 
+    <aside>
+            <section>
+                <header>
+                    <h3>Класация 1</h3>
+                </header>
+                <ul>
                     <li><a href="#">Lorem ipsum dolor</a></li>
                     <li><a href="#">Sit amet consectetur</a></li>
                     <li><a href="#">Adipisicing elit sed</a></li>
                     <li><a href="#">Do eiusmod tempor</a></li>
                     <li><a href="#">Incididunt ut labore</a></li>
                 </ul>
-
-	<header>
-		<h3>Класация 2 </h3>
-        </header>
-
+            </section>
+            <section>
+                <header>
+                    <h3>Класация 2 </h3>
+                </header>
                 <ul>
                     <li><a href="#">December 2008</a></li>
                     <li><a href="#">January 2009</a></li>
@@ -173,13 +64,9 @@
                     <li><a href="#">May 2009</a></li>
                     <li><a href="#">June 2009</a></li>
                 </ul>
-
-		<p><br><br><br><br><br></p>
-		</td>
-		</tr>
-		</table>		
-	
-        </div> 
+            </section>
+        </aside>
+    </div>
     </div>  
 
     <footer>

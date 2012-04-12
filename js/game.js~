@@ -96,7 +96,6 @@
 				ctx.font = "25pt Calibri";
     			ctx.fillStyle = "white";
    	    		ctx.fillText("Game Over", 120, 200);
-				
 			}
 		}
 		if(padX+padWidth+100 > width || padX<0){

@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<script language="javascript" src="game.js"></script>
+
+<script>
+function test1(){
+		var canvas;
+        
+}
+</script>
+</HEAD>
+<BODY>
+
+</BODY>
+</HTML>
+

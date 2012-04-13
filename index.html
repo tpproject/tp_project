@@ -31,7 +31,7 @@
 		<h3>
             <canvas id="my_canvas" width="500" height="400"></canvas>
 			<br />
-			<button onclick="init()">Стартирай играта!</button>
+			<button onclick="if(start==false) init()">Стартирай играта!</button>
 			<p>Управление на дъската: Използвайте лявата и дясната стрелка</p>
     </section> 
     <aside>
@@ -40,11 +40,9 @@
                     <h3>Класация 1</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Sit amet consectetur</a></li>
-                    <li><a href="#">Adipisicing elit sed</a></li>
-                    <li><a href="#">Do eiusmod tempor</a></li>
-                    <li><a href="#">Incididunt ut labore</a></li>
+                   
+						localStorage.getItem("Boyan");
+					
                 </ul>
             </section>
             <section>
@@ -52,13 +50,7 @@
                     <h3>Класация 2 </h3>
                 </header>
                 <ul>
-                    <li><a href="#">December 2008</a></li>
-                    <li><a href="#">January 2009</a></li>
-                    <li><a href="#">February 2009</a></li>
-                    <li><a href="#">March 2009</a></li>
-                    <li><a href="#">April 2009</a></li>
-                    <li><a href="#">May 2009</a></li>
-                    <li><a href="#">June 2009</a></li>
+                    
                 </ul>
             </section>
         </aside>

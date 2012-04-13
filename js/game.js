@@ -25,7 +25,10 @@
 	             "blue","yellow"];
 	var points=0;
 	var level=1;
-	function init(){
+	var start = false;
+	var completed = false;
+	
+		function init(){
 		canvas = document.getElementById('my_canvas');
 		ctx = canvas.getContext("2d");
 		width = canvas.width;
@@ -50,19 +53,12 @@
      			bricks[i][j] = 1;
     		}
   		}
-		points=0;
+		if(completed == false)
+			points=0;
+		start = true;
 	}
-	function draw(){
-		ctx.fillStyle = bgColor;
-		clear();
-		ctx.fillStyle = ballColor;
-		circle(x, y, ballRadius);
-		if (rightDown) padX += 5;
-		else if (leftDown) padX -= 5;
-			
-		ctx.fillStyle = padColor;
-		rect(padX, height-padHeight, padWidth,padHeight);    		
-   		for (i=0; i < nrows; i++) {
+	function drawBricks(){
+		for (i=0; i < nrows; i++) {
             ctx.fillStyle = colors[i];
     		for (j=0; j < ncols; j++) {
       			if (bricks[i][j] == 1) {
@@ -82,6 +78,19 @@
     		bricks[row][col] = 0;
 			points=points+(5*level);
   		}
+	}
+	function draw(){
+		
+		ctx.fillStyle = bgColor;
+		clear();
+		ctx.fillStyle = ballColor;
+		circle(x, y, ballRadius);
+		if (rightDown) padX += 5;
+		else if (leftDown) padX -= 5;
+			
+		ctx.fillStyle = padColor;
+		rect(padX, height-padHeight, padWidth,padHeight);    		
+   		drawBricks();
 		if (x + dx + ballRadius +100> width || x + dx - ballRadius < 0)
 			dx = -dx;
 		if (y + dy - ballRadius < 0)
@@ -92,15 +101,23 @@
 				dy = -dy;
 			}
 			else if (y + dy + ballRadius > height){
+				start = false;
+				points = 0;
 				clearInterval(gameInterval);
 				ctx.font = "25pt Calibri";
     			ctx.fillStyle = "white";
    	    		ctx.fillText("Game Over", 120, 200);
-				
+				completed = false;
+				ctx.font = "10pt Calibri";
+				ctx.fillText("press enter or space to retry", 120, 230);
+				localStorage.setItem("Boyan",points);	
 			}
 		}
-		if(padX+padWidth+100 > width || padX<0){
+		if( padX<0){
 			padX=-padX;
+		}
+		if(padX+padWidth+100 >= width){
+			padX=padX-6;
 		}
 		x += dx;
 		y += dy;
@@ -110,9 +127,28 @@
 		ctx.fillText(points, 440, 45);
 		if(points<150)
 			ctx.fillText("Level 1", 415, 120);
-		if(points==150){
-			init();
-			level=level+1;
+		else if(points<450)
+			ctx.fillText("Level 2", 415, 120);
+		else if(points<900)
+			ctx.fillText("Level 3", 415, 120);
+		else if(points<1500)
+			ctx.fillText("Level 4", 415, 120);
+		else if(points<2250)
+			ctx.fillText("Level 5", 415, 120);
+		if((points==150 && level==1) || (points == 450 && level==2) || (points==900 && level ==3) 
+			|| (points==1500 && level ==4) || (points==2250 && level == 5) && completed==false){
+			clearInterval(gameInterval);
+			start = false;
+			completed = true;
+			level = level + 1;
+			ctx.font = "25pt Calibri";
+    		ctx.fillStyle = "white";
+			ctx.fillText("Congratulations!", 110, 200);
+			ctx.font = "10pt Calibri";
+			ctx.fillText("press enter to continue...", 160, 230);
+			if(enterDown == true) {
+				init();
+			}
 		}			
 	}
 	function clear(){ 
@@ -133,11 +169,15 @@
 	function onKeyDown(evt){
 		if (evt.keyCode == 39) rightDown = true;
 		else if (evt.keyCode == 37) leftDown = true;
+		if(evt.keyCode == 13) enterDown = true;
+		if (evt.keyCode == 109) mDown = true;
 	}
 	function onKeyUp(evt){
 		if (evt.keyCode == 39) rightDown = false;
 		else if (evt.keyCode == 37) leftDown = false;
-	}	
+		if(evt.keyCode == 13) enterDown = false;
+		if (evt.keyCode == 109) mDown = true;
+	}
+	
 	document.addEventListener('keydown',onKeyDown);
 	document.addEventListener('keyup',onKeyUp);
-		

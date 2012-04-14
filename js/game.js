@@ -35,12 +35,12 @@
 		height = canvas.height;
 		padWidth = width/4.5;
 		padHeight = height/40;
-		padX = (width/2) - (padWidth/2);
+		padX = ((width/2)-50) - (padWidth/2);
 		gameInterval = setInterval(draw, 10);
 		x = 200;
 		y = 384;
-		dx = 0.5;
-		dy = -4;
+		dx =0.5;
+		dy = -3-level;
 		nrows=6;
 		ncols=5;
 		brwidth = 79;
@@ -103,6 +103,7 @@
 			else if (y + dy + ballRadius > height){
 				start = false;
 				points = 0;
+				level = 1;
 				clearInterval(gameInterval);
 				ctx.font = "25pt Calibri";
     			ctx.fillStyle = "white";

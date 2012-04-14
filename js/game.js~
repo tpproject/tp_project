@@ -7,8 +7,8 @@
 	var x = 200; 				
 	var y = 384; 				
 	var ballColor = "white";	
-	var dx = 5;				
-	var dy = -10;				
+	var dx = 1.5;				
+	var dy = -4;				
 	var padX; 					
 	var padWidth;			
 	var padHeight;			
@@ -35,12 +35,12 @@
 		height = canvas.height;
 		padWidth = width/4.5;
 		padHeight = height/40;
-		padX = (width/2) - (padWidth/2);
+		padX = ((width/2)-50) - (padWidth/2);
 		gameInterval = setInterval(draw, 10);
 		x = 200;
 		y = 384;
-		dx = 0.5;
-		dy = -4;
+		dx =0.5;
+		dy = -2-level;
 		nrows=6;
 		ncols=5;
 		brwidth = 79;
@@ -103,6 +103,7 @@
 			else if (y + dy + ballRadius > height){
 				start = false;
 				points = 0;
+				level = 1;
 				clearInterval(gameInterval);
 				ctx.font = "25pt Calibri";
     			ctx.fillStyle = "white";
@@ -135,7 +136,6 @@
 			ctx.fillText("Level 4", 415, 120);
 		else if(points<2250)
 			ctx.fillText("Level 5", 415, 120);
-
 		if((points==150 && level==1) || (points == 450 && level==2) || (points==900 && level ==3) 
 			|| (points==1500 && level ==4) || (points==2250 && level == 5) && completed==false){
 			clearInterval(gameInterval);

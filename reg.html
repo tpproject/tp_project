@@ -14,29 +14,36 @@
 
     <nav>  
         <ul>  
-            <li><a href="index.html">Начало</a></li>  
-            <li><a href="reg.html">Регистрация</a></li> 
-            <li><a href="gallery.html">Картинки</a></li>    
-            <li><a href="luck.html">Късметчета</a></li>  
+            <li><a href="index.php">Начало</a></li>  
+    		<li><a href="reg.html">Регистрация</a></li> 
+            <li><a href="gallery.php">Картинки</a></li>    
+            <li><a href="luck.php">Късметчета</a></li>  
 			
         </ul>     
-    </nav></p></p></p></p>
+    </nav>    
+	 <div id="content">
+    	<div id="mainContent">
+        	<form method="POST" action="register.php">
+				<fieldset>
+                    <label for="username">Username</label><br>
+                    <input type="text" name="username" id="username" required autofocus><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" id="password" required><br>
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" id="email" required><br>
+				</fieldset>
+				<fieldset>
+					<button type=submit>>>&nbsp;&nbsp;&nbsp;Submit</button>
+				</fieldset>
+			</form>
+        </div>
+        <div id="sidebar">
+        	<h3>
+            	<center>Класация</center>
+            </h3>
+        </div>   
+    </div>  
 	
-	<form method="POST" action="register.php">
-		<fieldset>
-			<label for="username">Username</label><br>
-			<input type="text" name="username" id="username" required autofocus><br>
-			<label for="email">Email</label><br>
-			<input type="email" name="email" id="email" required><br>
-			<label for="password">Password</label><br>
-			<input type="password" name="password" id="password" required><br>
-		</fieldset>
-		
-		<fieldset>
-			<button type=submit>>>&nbsp;&nbsp;&nbsp;Submit</button>
-		</fieldset>
-	</form>
-	</p></p></p></p></p></p></p></p></p>
     <footer>
         <div>
             <section id="about">

@@ -26,35 +26,52 @@ if (!isset($_SESSION['authuser']))
     </nav>  
 	<div id="content">
     	<div id="mainContent">
-            <div class='img' id='img-1'> 
-            <div class='mask'></div>
+            <div class='img'>
             <img src='images/1280x1024.jpg' width="200" height="200" />
             </div>
             
-            <div class='img' id='img-2'>
-            <div class='mask'></div>
+            <div class='img'>
             <img src='images/alan_wake_44545-1280x1024.jpg' width="200" height="200" />
             </div>
-        
-            <div class='img' id='img-3'>
-            <div class='mask' id='mask-1'></div>
-            <div class='mask' id='mask-2'></div>
+
+            <div class='img'>
             <img src='images/ACB_1280x1024.jpg' width="200" height="200" />
             </div>
             
-            <div class='img' id='img-4'>
-            <div class='mask'></div>
+            <div class='img'>
             <img src='images/Uplay_PC_Wallpaper4_1280x960.jpg' width="200" height="200" />
             </div>
             
-            <div class='img' id='img-5'>
-            <div class='mask'></div>
+            <div class='img'>
             <img src='images/Uplay_PC_Wallpaper3_1280x960.jpg' width="200" height="200" />
             </div>
             
-            <div class='img' id='img-6'>
-            <div class='mask'></div>
+            <div class='img'>
             <img src='images/Uplay_PC_Wallpaper2_1280x960.jpg' width="200" height="200" />
+            </div>
+
+            <div class='img'>
+            <img src='images/133210_1280_1024.jpg' width="200" height="200" />
+            </div>
+            
+            <div class='img'>
+            <img src='images/12894207045.jpg' width="200" height="200" />
+            </div>
+            
+            <div class='img'>
+            <img src='images/batman.bmp' width="200" height="200" />
+            </div>
+
+            <div class='img'>
+            <img src='images/prince of persia 2.jpg' width="200" height="200" />
+            </div>
+
+            <div class='img'>
+            <img src='images/Wallpaper_Prince_of_Persia_The_Two_Thrones_06.jpg' width="200" height="200" />
+            </div>
+
+            <div class='img'>
+            <img src='images/prince of persia 2 warrior within.jpg' width="200" height="200" />
             </div> 
 			
 			

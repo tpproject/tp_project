@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['authuser'])) {
      $sidebar=1;     
 }else if($massage!=1){
-		header('Location: http://localhost/tpproject/index.php');
+		header('Location: http://localhost/TP/index.php');
 		setcookie('massage',1,time()+1);
 	}
 ?>
@@ -42,12 +42,19 @@ if (isset($_SESSION['authuser'])) {
    
     <div id="content">
     	<div id="mainContent">
+        <script>
+			var savePoints;
+			function save(){
+				urlString = "save_points.php?var=" +points;
+				window.location = urlString;
+			}
+		</script>
         	<br><br>
         	<center>
                 <canvas id="my_canvas" width="500" height="400"></canvas>
                 <br/>
-                <button onClick="if(start==false) init()">Стартирай играта!</button>
-                
+                <button onClick="if(start==false){ init(); savePoints=true;}">Стартирай играта</button>
+                <button onClick="if(savePoints==true && start==false) save()">Запамети точките</button>
                 <p>Управление на дъската: Използвайте лявата и дясната стрелка</p>
             </center>
         </div>
@@ -67,6 +74,46 @@ if (isset($_SESSION['authuser'])) {
         	<h3>
             	<center>Класация</center>
             </h3>
+            <?php
+	$link = mysql_connect("localhost","root","wweraw") or die("Check your connection!");
+	mysql_select_db("register");
+	
+	$query="SELECT Username,Points FROM users ORDER BY Points DESC";
+	$result = mysql_query($query,$link) or die(mysql_error());
+	
+	$user_header=<<<EO
+	<table width="70%" border = "1" cellpadding = "2" cellspacing="2" align="center">
+	<tr>
+		<th>Username</th>
+		<th>Points</th>
+	</tr>
+EO;
+
+	$user_details= ' ';
+	$counter = 0;
+	while ($counter < 5) {
+		$row = mysql_fetch_array($result);
+		$user = $row['Username'];
+		$points = $row['Points'];
+		
+		$user_details .=<<<EOD
+		<tr>
+			<td><center>$user</center></td>
+			<td><center>$points</center></td>
+		</tr>
+EOD;
+	$counter = $counter + 1 ;
+	};
+
+	$user_footer="</table>";
+	
+	$users =<<<USERS
+		$user_header
+		$user_details
+		$user_footer
+USERS;
+	echo $users;
+?>
         </div>   
     </div>  
 
@@ -83,8 +130,7 @@ if (isset($_SESSION['authuser'])) {
                     <h3>Последвай ни</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Tweeter</a></li>
+                    <li><a href="www.facebook.com">Facebook</a></li>
                 </ul>
             </section>
             <section id="popular">
@@ -92,8 +138,7 @@ if (isset($_SESSION['authuser'])) {
                     <h3>Популярни</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Куизи</a></li>
-                    <li><a href="#">Изтегли Късметче</a></li>
+                    <li><a href="luck.php">Изтегли Късметче</a></li>
                 </ul>
             </section>
         </div>

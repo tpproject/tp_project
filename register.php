@@ -49,7 +49,7 @@
         
     </div>  
 
-<footer>
+ <footer>
         <div>
             <section id="about">
                 <header>
@@ -62,8 +62,7 @@
                     <h3>Последвай ни</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Tweeter</a></li>
+                    <li><a href="www.facebook.com">Facebook</a></li>
                 </ul>
             </section>
             <section id="popular">
@@ -71,12 +70,11 @@
                     <h3>Популярни</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Куизи</a></li>
-                    <li><a href="#">Изтегли Късметче</a></li>
+                    <li><a href="luck.php">Изтегли Късметче</a></li>
                 </ul>
             </section>
         </div>
     </footer>
-
-</body>
-</html>
+  
+</body>  
+</html> 

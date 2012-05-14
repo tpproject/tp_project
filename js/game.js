@@ -13,6 +13,7 @@
 	var padWidth;			
 	var padHeight;			
 	var padColor = "white";	
+	var enterDown = false;
 	var rightDown = false;
 	var leftDown = false;
 	var bricks;
@@ -87,9 +88,10 @@
 		circle(x, y, ballRadius);
 		if (rightDown) padX += 5;
 		else if (leftDown) padX -= 5;
-			
+		
 		ctx.fillStyle = padColor;
-		rect(padX, height-padHeight, padWidth,padHeight);    		
+		rect(padX, height-padHeight, padWidth,padHeight);   
+		rect(405,0,1,500);    		 		
    		drawBricks();
 		if (x + dx + ballRadius +100> width || x + dx - ballRadius < 0)
 			dx = -dx;
@@ -102,16 +104,14 @@
 			}
 			else if (y + dy + ballRadius > height){
 				start = false;
-				points = 0;
 				level = 1;
-				clearInterval(gameInterval);
 				ctx.font = "25pt Calibri";
     			ctx.fillStyle = "white";
    	    		ctx.fillText("Game Over", 120, 200);
 				completed = false;
 				ctx.font = "10pt Calibri";
 				ctx.fillText("press enter or space to retry", 120, 230);
-				localStorage.setItem("Boyan",points);	
+				clearInterval(gameInterval);
 			}
 		}
 		if( padX<0){
@@ -147,7 +147,7 @@
 			ctx.fillText("Congratulations!", 110, 200);
 			ctx.font = "10pt Calibri";
 			ctx.fillText("press enter to continue...", 160, 230);
-			if(enterDown == true) {
+			if(enterDown) {
 				init();
 			}
 		}			
@@ -170,14 +170,14 @@
 	function onKeyDown(evt){
 		if (evt.keyCode == 39) rightDown = true;
 		else if (evt.keyCode == 37) leftDown = true;
-		if(evt.keyCode == 13) enterDown = true;
-		if (evt.keyCode == 109) mDown = true;
+		else if(evt.keyCode == 13) enterDown = true;
+		
 	}
 	function onKeyUp(evt){
 		if (evt.keyCode == 39) rightDown = false;
 		else if (evt.keyCode == 37) leftDown = false;
-		if(evt.keyCode == 13) enterDown = false;
-		if (evt.keyCode == 109) mDown = true;
+		else if(evt.keyCode == 13) enterDown = false;
+		
 	}
 	
 	document.addEventListener('keydown',onKeyDown);

@@ -1,8 +1,8 @@
 <?php
-	require("login.php");
 	session_start();
+	
 	if($_SESSION['authuser']==1)
-		header('Location: http://localhost/tpproject/authenticate.php');
+		header('Location: http://localhost/TP/authenticate.php');
 ?>
 <!doctype html>  
 <html>  
@@ -22,7 +22,14 @@
     <nav>  
         <ul>  
             <li><a href="index.php">Начало</a></li>  
-    		<li><a href="reg.html">Регистрация</a></li> 
+    		<li>
+            	<?php 
+				if($sidebar==1)
+					echo '<a href="logout.php">Излез</a>';
+				else
+					echo '<a href="reg.html">Регистрация</a>';
+			?>
+            </li> 
             <li><a href="gallery.php">Картинки</a></li>    
             <li><a href="luck.php">Късметчета</a></li>  
 			
@@ -69,6 +76,46 @@
         	<h3>
             	<center>Класация</center>
             </h3>
+                       <?php
+	$link = mysql_connect("localhost","root","wweraw") or die("Check your connection!");
+	mysql_select_db("register");
+	
+	$query="SELECT Username,Points FROM users ORDER BY Points DESC";
+	$result = mysql_query($query,$link) or die(mysql_error());
+	
+	$user_header=<<<EO
+	<table width="70%" border = "1" cellpadding = "2" cellspacing="2" align="center">
+	<tr>
+		<th>Username</th>
+		<th>Points</th>
+	</tr>
+EO;
+
+	$user_details= ' ';
+	$counter = 0;
+	while ($counter < 5) {
+		$row = mysql_fetch_array($result);
+		$user = $row['Username'];
+		$points = $row['Points'];
+		
+		$user_details .=<<<EOD
+		<tr>
+			<td><center>$user</center></td>
+			<td><center>$points</center></td>
+		</tr>
+EOD;
+	$counter = $counter + 1 ;
+	}
+
+	$user_footer="</table>";
+	
+	$users =<<<USERS
+		$user_header
+		$user_details
+		$user_footer
+USERS;
+	echo $users;
+?>
         </div>   
     </div>  
 
@@ -85,8 +132,7 @@
                     <h3>Последвай ни</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Tweeter</a></li>
+                    <li><a href="www.facebook.com">Facebook</a></li>
                 </ul>
             </section>
             <section id="popular">
@@ -94,8 +140,7 @@
                     <h3>Популярни</h3>
                 </header>
                 <ul>
-                    <li><a href="#">Куизи</a></li>
-                    <li><a href="#">Изтегли Късметче</a></li>
+                    <li><a href="luck.php">Изтегли Късметче</a></li>
                 </ul>
             </section>
         </div>

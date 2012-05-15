@@ -29,7 +29,7 @@ if (isset($_SESSION['authuser'])) {
             <li><a href="luck.php">Късметчета</a></li>  
 			
         </ul>     
-    </nav>  
+    </nav></p></p>
 	<div id="content">
     	<div id="mainContent">
             <div class='img'>
@@ -79,7 +79,7 @@ if (isset($_SESSION['authuser'])) {
             <div class='img'>
             <img src='images/prince of persia 2 warrior within.jpg' width="200" height="200" />
             </div> 
-			
+            
     	</div>
 	</div>
     <footer>
